@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Room
+from .models import Room, Topic
 from .forms import RoomForm
 
 # rooms = [
@@ -18,8 +18,20 @@ from .forms import RoomForm
 # ]
 
 def home(request):
-    rooms = Room.objects.all()
-    context = {'rooms': rooms}
+    # query = request.GET.get('q') if request.GET != None else ''
+    query = request.GET.get('q', '')  # Default to empty string if q is not in GET
+
+    
+    # rooms = Room.objects.all()
+
+    if query == '':
+        rooms = Room.objects.all()
+    else:
+        rooms = Room.objects.filter(topic__name__contains = query)
+
+    topic  = Topic.objects.all()
+
+    context = {'rooms': rooms, 'topic': topic}
     return render(request, 'base/home.html', context)
 
 
