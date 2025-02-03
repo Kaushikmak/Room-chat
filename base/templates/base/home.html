@@ -14,6 +14,7 @@
   <div>
     <h3>Search Topics</h3>
     <hr />
+    <a href="{% url 'create-topic' %}"><p>Create Topic</p></a>
     <a href="{% url 'home' %}">All</a>
     {% for i in topic %}
       <div>

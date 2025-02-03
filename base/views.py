@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 from .models import Room, Topic, Message
 from .forms import RoomForm
+from .topic import TopicForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -74,12 +75,26 @@ def room(request, pagekey):
     return render(request, 'base/room.html', context)
 
 @login_required(login_url='/login')
+def createTopic(request):
+    form = TopicForm()
+
+    if request.method == 'POST':
+        form = TopicForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('home')
+
+    context = {'form': form}
+    return render(request, 'base/topic_form.html', context)
+
+
+@login_required(login_url='/login')
 def createRoom(request):
     form = RoomForm()
 
     if request.method == 'POST':
         form = RoomForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             return redirect('home')
 
