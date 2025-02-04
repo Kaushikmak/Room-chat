@@ -1,9 +1,18 @@
-<h3>Search Topics</h3>
-    <hr />
-    <a href="{% url 'create-topic' %}"><p>Create Topic</p></a>
-    <a href="{% url 'home' %}">All</a>
-    {% for i in topic %}
+<div class="topic-widget-container">
+  <h3>Search Topics</h3>
+  
+  <a href="{% url 'create-topic' %}" class="create-topic">
+      <p>Create Topic</p>
+  </a>
+  
+  <a href="{% url 'home' %}" class="all-topics">All</a>
+  
+  {% for i in topic %}
       <div>
-        <a href="{% url 'home' %}?q={{i.name}}">{{i.name}}</a>
+          <a href="{% url 'home' %}?q={{i.name}}" 
+             {% if request.GET.q == i.name %}class="active"{% endif %}>
+              {{i.name}}
+          </a>
       </div>
-    {% endfor %}
+  {% endfor %}
+</div>
