@@ -1,0 +1,303 @@
+body{
+    background-color: #222831;
+    color: #EEEEEE;
+}
+
+a{
+    color: #00ADB5;
+    text-decoration: none;
+}
+
+time{
+    font-size: small;
+    color: black;
+}
+
+/* Feed Container */
+.feed-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+/* Card */
+.feed-container > div {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 3rem 1.5rem 1.5rem;  /* Increased top padding */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Common styles for both button containers */
+.action-buttons-edit,
+.action-buttons-delete {
+    display: flex;
+    position: absolute;
+    top: 1rem;
+}
+
+/* Position edit button */
+.action-buttons-edit {
+    right: 4rem;  /* Increased space between buttons */
+}
+
+/* Position delete button */
+.action-buttons-delete {
+    right: 1rem;
+}
+
+/* Common styles for both button types */
+.action-buttons-edit a,
+.action-buttons-delete a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+/* Edit button specific styles */
+.action-buttons-edit a {
+    background-color: #E3F2FD;
+    color: #1976D2;
+    border: 1px solid #1976D2;
+}
+
+.action-buttons-edit a:hover {
+    background-color: #1976D2;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(25, 118, 210, 0.3);
+}
+
+/* Delete button specific styles */
+.action-buttons-delete a {
+    background-color: #FFEBEE;
+    color: #DC3545;
+    border: 1px solid #DC3545;
+}
+
+.action-buttons-delete a:hover {
+    background-color: #DC3545;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* Active state for both buttons */
+.action-buttons-edit a:active,
+.action-buttons-delete a:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+
+/* User Info Link */
+.feed-container a[href*="user-profile"] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    margin-top: 0.5rem;
+}
+
+/* Username */
+.feed-container a[href*="user-profile"] span {
+    color: #666;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* Time */
+.feed-container a[href*="user-profile"] time {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+/* Room Title */
+.feed-container h5 {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+.feed-container h5 a {
+    color: #2C3E50;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 600;
+}
+
+/* Topic Tag */
+.feed-container small {
+    background-color: #F5F7FA;
+    color: #606F7B;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    align-self: flex-start;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feed-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .feed-container > div {
+        padding-top: 3.5rem;  /* Increased for mobile */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .feed-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/*----------------------------------------------------------------------------------------------------*/
+
+
+
+
+/* Navbar Container */
+.navbar-container {
+    background-color: #393E46;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Logo */
+.navbar-container a h1 {
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Search Form */
+.navbar-container form {
+    flex: 1;
+    max-width: 400px;
+    margin: 0 2rem;
+}
+
+.navbar-container form input {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: rgba(255,255,255,0.15);
+    color: #FFFFFF;
+    font-size: 0.9rem;
+}
+
+.navbar-container form input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.navbar-container form input:focus {
+    outline: none;
+    background-color: rgba(255,255,255,0.25);
+}
+
+/* User Welcome Text */
+.navbar-container h5 {
+    color: #FFFFFF;
+    margin: 0 1rem;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+/* Auth Links */
+.navbar-container a[href*="logout"],
+.navbar-container a[href*="login"] {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: rgba(255,255,255,0.1);
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.navbar-container a[href*="logout"]:hover,
+.navbar-container a[href*="login"]:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Hide Horizontal Line */
+.navbar-container hr {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .navbar-container {
+        padding: 1rem;
+    }
+    
+    .navbar-container form {
+        max-width: 300px;
+        margin: 0 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0.8rem;
+    }
+
+    .navbar-container a h1 {
+        font-size: 1.2rem;
+    }
+
+    .navbar-container form {
+        order: 3;
+        margin: 0.5rem 0;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .navbar-container h5 {
+        font-size: 0.8rem;
+        margin: 0 0.5rem;
+    }
+
+    .navbar-container a[href*="logout"],
+    .navbar-container a[href*="login"] {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-container {
+        padding: 0.6rem;
+    }
+    
+    .navbar-container a h1 {
+        font-size: 1rem;
+    }
+}
