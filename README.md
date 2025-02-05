@@ -50,3 +50,75 @@ Visit the live application: [StuddieBuddie](https://kaushikmak.pythonanywhere.co
 ### Local Installation
 
 1. Clone the repository
+git clone https://github.com/your-username/studdie-buddie.git
+cd studdie-buddie
+
+2. Create a virtual environment
+python -m venv venv
+source venv/bin/activate # On Windows: venv\Scripts\activate
+
+3. Install dependencies
+pip install -r requirements.txt
+
+4. Run migrations
+python manage.py migrate
+
+5. Create superuser (Admin)
+python manage.py createsuperuser
+
+6. Start development server
+python manage.py runserver
+
+
+Visit `http://localhost:8000` in your browser.
+
+## 📝 Usage
+
+1. Register a new account or login
+2. Browse available study rooms
+3. Join a room or create your own
+4. Participate in discussions
+5. Create and manage your study topics
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👤 Author
+
+**Your Name**
+- GitHub: [@kaushikmak](https://github.com/Kaushikmak)
+
+
+## 🙏 Acknowledgments
+
+- Django Documentation
+- PythonAnywhere for hosting
+- All contributors and users of StuddieBuddie
+
+## 📸 Screenshots
+
+[Add screenshots of your application here]
+
+## 📊 Project Status
+
+The project is currently in active development. New features and improvements are being added regularly.
+
+## 🔗 Additional Links
+
+- [Bug Report](https://github.com/yourusername/studdie-buddie/issues)
+- [Feature Request](https://github.com/yourusername/studdie-buddie/issues)
+
+---
+⭐️ Star this repo if you find it helpful!
+
