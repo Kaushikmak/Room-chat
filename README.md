@@ -27,8 +27,8 @@ Visit the live application: [StuddieBuddie](https://kaushikmak.pythonanywhere.co
 ## 🛠️ Technologies Used
 
 - **Backend**
-  - Django 4.2
-  - Python 3.9
+  - Django 4.2 ![Django](https://img.shields.io/badge/django-4.2-green.svg)
+  - Python 3.9 ![Python](https://img.shields.io/badge/python-3.9-blue.svg)
   - SQLite3
 
 - **Frontend**
