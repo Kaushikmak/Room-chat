@@ -108,16 +108,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📸 Screenshots
 
-[Add screenshots of your application here]
+
 
 ## 📊 Project Status
 
 The project is currently in active development. New features and improvements are being added regularly.
-
-## 🔗 Additional Links
-
-- [Bug Report](https://github.com/yourusername/studdie-buddie/issues)
-- [Feature Request](https://github.com/yourusername/studdie-buddie/issues)
 
 ---
 ⭐️ Star this repo if you find it helpful!
