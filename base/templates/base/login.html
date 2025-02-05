@@ -1,24 +1,24 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<div class="login-container">
+    <form method="post" action="" novalidate>
+        {% csrf_token %}
 
-    <div class="login-container">
-        <form method="post" action="">
-            {% csrf_token %}
+        <div class="form-field">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Enter username" required>
+        </div>
 
-            <label>Username</label>
-            <input type="text" name="username" placeholder="Enter username">
+        <div class="form-field password-field">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter Password" required>
+        </div>
 
-            <label>Password</label>
-            <input type="text" name="password" placeholder="Enter Password">
-            
+        <input type="submit" value="Login">
 
-            <input type="submit" value="Login">
-
-            <p>Don't have have account?</p>
-            <a href="{% url 'register-user' %}">Register</a>
-        </form>
-    </div>
-
-
+        <p>Don't have an account?</p>
+        <a href="{% url 'register-user' %}">Register</a>
+    </form>
+</div>
 {% endblock content %}

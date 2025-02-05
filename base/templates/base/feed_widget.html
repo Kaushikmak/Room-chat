@@ -1,45 +1,26 @@
-<!-- <div class="feed-container">
-  {% for i in rooms %}
-      <div>
-        {% if request.user == i.host %}
-        <div class="action-buttons">
-          <a href="{% url 'update-room' i.id %}">Edit</a>
-          <a href="{% url 'delete-room' i.id %}">Delete</a>
-        </div>
-          
-        {% endif %}
-        
-
-        <a href="{% url 'user-profile' i.host.id %}">
-          <span>@{{ i.host.username }}</span>
-          <time>{{i.created|timesince}} ago</time>
-      </a>
-        <h5>{{i.id}} = <a href="{% url 'room' i.id %}">{{i.name}}</a></h5>
-        <small>{{i.topic.name}}</small>
-        
-      </div>
-      {% endfor %}
-</div> -->
-
 <div class="feed-container">
   {% for i in rooms %}
-  <div>
+  <div data-room-id="{{ i.id }}">
     {% if request.user == i.host %}
     <div class="action-buttons-edit">
-      <a href="{% url 'update-room' i.id %}" title="Edit"> Edit </a>
+      <a href="{% url 'update-room' i.id %}" title="Edit Room"> 
+        <i class="fas fa-edit"></i> Edit
+      </a>
     </div>
     <div class="action-buttons-delete">
-      <a href="{% url 'delete-room' i.id %}" title="Delete"> Delete </a>
+      <a href="{% url 'delete-room' i.id %}" title="Delete Room"> 
+        <i class="fas fa-trash"></i> Delete
+      </a>
     </div>
     {% endif %}
 
-    <a href="{% url 'user-profile' i.host.id %}">
+    <a href="{% url 'user-profile' i.host.id %}" class="user-link">
       <span>@{{ i.host.username }}</span>
     </a>
-    <time>{{i.created|timesince}} ago</time>
+    <time datetime="{{ i.created|date:'c' }}">{{i.created|timesince}} ago</time>
 
     <h5><a href="{% url 'room' i.id %}">{{i.name}}</a></h5>
-    <small>{{i.topic.name}}</small>
+    <small class="topic-tag">{{i.topic.name}}</small>
   </div>
   {% endfor %}
 </div>

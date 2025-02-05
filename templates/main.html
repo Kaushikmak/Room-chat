@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 
-{% load static %}   
+{% load static %}
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+    <script src="{% static 'script/main.js' %}"></script>
     <title>Studdie Buddie</title>
-</head>
-<body>
-
-    {% include 'nav.html' %}
-
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>
-                    {{ message }}
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-
-    {% block content %}
+  </head>
+  <body>
+    {% include 'nav.html' %} {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% block content %}
+    <div class="content"></div>
 
     {% endblock %}
-
-</body>
+  </body>
 </html>

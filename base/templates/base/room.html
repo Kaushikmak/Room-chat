@@ -1,54 +1,49 @@
-{% extends 'main.html' %}
-
-{% block content %}
-
-
+{% extends 'main.html' %} {% block content %}
 <div class="room-container">
+  <div class="main-content">
+    <h1>{{room.name}}</h1>
+    <p>{{ room.description }}</p>
 
-    <div>
-        <h1>{{room.name}}</h1>
-        <p>{{ room.description }}</p>
-
-        <div class="commnet-wrapper">
-            <h3>Conversation</h3>
-            <hr>
-            {% for msg in room_messages %}
-                <div>
-                    {% if request.user == msg.user %}
-                        <a href="{% url 'delete-message' msg.id %}">Delete</a>
-                    {% endif %}
-                    
-                    <small>@{{msg.user}}  {{msg.created|timesince}} ago</small>
-                    <p>{{msg.body}}</p>
-                    <hr>
-                </div>
-            {% endfor %}
-        </div>
-
-
-        {% if request.user.is_authenticated %}
-        <div class="commnet-form">
-            <form method="post" action="">
-                {% csrf_token %}
-                <input type="text" name="body" placeholder="What's going on your mind....">
-            </form>
-        </div>
-
+    <div class="commnet-wrapper">
+      <h3>Conversation</h3>
+      <hr />
+      {% for msg in room_messages %}
+      <div class="comment-item">
+        {% if request.user == msg.user %}
+        <a href="{% url 'delete-message' msg.id %}" class="delete-btn"
+          >Delete</a
+        >
         {% endif %}
+
+        <small>{{msg.user}} • {{msg.created|timesince}} ago</small>
+        <p>{{msg.body}}</p>
+        <hr />
+      </div>
+      {% endfor %}
     </div>
 
-
-    <div>
-        <h3>Vele log</h3>
-        <hr>
-        {% for user in participants %}
-            <div>
-                <p>@{{user.username}}</p>
-            </div>
-        {% endfor %}
+    {% if request.user.is_authenticated %}
+    <div class="commnet-form">
+      <form method="post" action="">
+        {% csrf_token %}
+        <input
+          type="text"
+          name="body"
+          placeholder="Write your message here..."
+        />
+      </form>
     </div>
-    
+    {% endif %}
+  </div>
+
+  <div class="participants-sidebar">
+    <h3>Participants</h3>
+    <hr />
+    {% for user in participants %}
+    <div class="participant">
+      <p>{{user.username}}</p>
+    </div>
+    {% endfor %}
+  </div>
 </div>
-
-
 {% endblock %}

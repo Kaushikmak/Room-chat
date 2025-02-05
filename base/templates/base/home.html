@@ -1,35 +1,24 @@
 {% extends 'main.html' %} 
 
 {% block content %}
-
-<style>
-  .home-container{
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-  }
-
-</style>
-
 <div class="home-container">
-  <div>
-    
-    {% include 'base/topic_widget.html' %}
-
-  </div>
-
-  <div>
-    <h5>Search across {{room_count}} rooms</h5>
-    <a href="{% url 'create-room' %}">Create Room</a>
-    <hr>
-    <div>
-      {% include 'base/feed_widget.html' %}
+    <div class="sidebar-left">
+        {% include 'base/topic_widget.html' %}
     </div>
-  </div>
 
-  <div>
-    {% include 'base/activity_widget.html' %}
-  </div>
+    <div class="main-content">
+        <div class="header-section">
+            <h5><span>Search across {{room_count}} rooms</span></h5>
+            <a href="{% url 'create-room' %}" class="create-room-btn">Create Room</a>
+        </div>
+        <hr>
+        <div class="feed-section">
+            {% include 'base/feed_widget.html' %}
+        </div>
+    </div>
 
+    <div class="sidebar-right">
+        {% include 'base/activity_widget.html' %}
+    </div>
 </div>
-
 {% endblock %}
