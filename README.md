@@ -1,6 +1,6 @@
 # StuddieBuddie - Study Room Discussion Platform 🎓
 
-StuddieBuddie is a dynamic web application built with Django that facilitates study group discussions and knowledge sharing. Users can create study rooms, join discussions, and collaborate with fellow learners.
+Room Chat is a dynamic web application built with Django that facilitates group discussions and knowledge sharing. Users can create rooms, join discussions, and collaborate with fellow learners.
 
 ## 🌐 Live Demo
 Visit the live application: [StuddieBuddie](https://kaushikmak.pythonanywhere.com/)
