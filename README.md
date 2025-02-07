@@ -3,7 +3,7 @@
 Room Chat is a dynamic web application built with Django that facilitates group discussions and knowledge sharing. Users can create rooms, join discussions, and collaborate with fellow learners.
 
 ## 🌐 Live Demo
-Visit the live application: [StuddieBuddie](https://kaushikmak.pythonanywhere.com/)
+Visit the live application: [Room Chat](https://kaushikmak.pythonanywhere.com/)
 
 ## ✨ Features
 
