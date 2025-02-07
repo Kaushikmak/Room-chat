@@ -12,8 +12,8 @@ Visit the live application: [Room Chat](https://kaushikmak.pythonanywhere.com/)
   - Login/Logout functionality
   - Profile management
 
-- **Study Rooms**
-  - Create study rooms
+- **Rooms**
+  - Create chat rooms
   - Join existing rooms
   - Real-time discussions
   - Topic-based organization
