@@ -20,7 +20,6 @@ Visit the live application: [StuddieBuddie](https://kaushikmak.pythonanywhere.co
 
 - **Interactive Interface**
   - Responsive design
-  - Dark/Light theme
   - User-friendly navigation
   - Real-time updates
 
