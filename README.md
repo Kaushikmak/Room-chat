@@ -32,7 +32,7 @@ Visit the live application: [Room Chat](https://kaushikmak.pythonanywhere.com/)
 
 - **Frontend**
   - HTML5
-  - CSS3
+  - CSS3 (Generated using Claude Sonnet AI)
   - JavaScript
   - Responsive Design
 
