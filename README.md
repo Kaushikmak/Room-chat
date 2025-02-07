@@ -49,8 +49,8 @@ Visit the live application: [Room Chat](https://kaushikmak.pythonanywhere.com/)
 ### Local Installation
 
 1. Clone the repository
-git clone https://github.com/your-username/studdie-buddie.git
-cd studdie-buddie
+git clone https://github.com/Kaushikmak/Room-chat
+cd Room-chat
 
 2. Create a virtual environment
 python -m venv venv
@@ -74,10 +74,10 @@ Visit `http://localhost:8000` in your browser.
 ## 📝 Usage
 
 1. Register a new account or login
-2. Browse available study rooms
+2. Browse available chat rooms
 3. Join a room or create your own
 4. Participate in discussions
-5. Create and manage your study topics
+5. Create and manage your chat topics
 
 ## 🤝 Contributing
 
@@ -103,7 +103,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Django Documentation
 - PythonAnywhere for hosting
-- All contributors and users of StuddieBuddie
+- All contributors and users of Room-chat
 
 ## 📸 Screenshots
 
