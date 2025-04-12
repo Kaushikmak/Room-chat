@@ -114,8 +114,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - PythonAnywhere for hosting
 - All contributors and users of Room-chat
 
-## 📸 Screenshots
-
 
 
 ## 📊 Project Status
