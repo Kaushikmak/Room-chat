@@ -7,7 +7,11 @@ Visit the live application: [Room Chat](https://kaushikmak.pythonanywhere.com/)
 
 ## 📹 Media Showcase
 
-<iframe src="https://drive.google.com/file/d/1S2-uU7ZBPfq_CrxHq7YvGZKLnxgRTMul/preview" width="640" height="480" allow="autoplay"></iframe>
+
+
+https://github.com/user-attachments/assets/aef3037f-3a79-4da4-9b2b-7f62d5b1bc77
+
+
 
 
 ## ✨ Features
