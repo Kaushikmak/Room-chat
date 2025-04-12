@@ -5,6 +5,11 @@ Room Chat is a dynamic web application built with Django that facilitates group 
 ## 🌐 Live Demo
 Visit the live application: [Room Chat](https://kaushikmak.pythonanywhere.com/)
 
+## 📹 Media Showcase
+
+<iframe src="https://drive.google.com/file/d/1S2-uU7ZBPfq_CrxHq7YvGZKLnxgRTMul/view?usp=sharing" width="640" height="480"></iframe>
+
+
 ## ✨ Features
 
 - **User Authentication**
