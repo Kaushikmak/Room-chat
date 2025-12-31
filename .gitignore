@@ -1,0 +1,18 @@
+# Python & Django internals
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+.DS_Store
+
+# Environments
+venv/
+env/
+.env
+
+# Static collection (generated on server, not needed in repo)
+staticfiles/
+
+# Logs
+*.log

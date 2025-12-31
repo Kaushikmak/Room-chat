@@ -44,6 +44,25 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+ROOT_URLCONF = 'studiebuddie.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'], # Points to a root 'templates' folder if you have one
+        'APP_DIRS': True, # REQUIRED: Enables finding templates inside apps (like Admin)
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+# ----------------------------------------
+
 # --- Database (Auto-switch between SQLite and Postgres) ---
 DATABASES = {
     'default': dj_database_url.config(
@@ -73,3 +92,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+WSGI_APPLICATION = 'studiebuddie.wsgi.application'
