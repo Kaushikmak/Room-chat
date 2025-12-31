@@ -22,5 +22,6 @@ Ensure you have Python installed on your system.
 
 ### 2. Clone the Repository
 ```bash
-git clone [https://github.com/Kaushikmak/Room-chat.git](https://github.com/Kaushikmak/Room-chat.git)
+git clone https://github.com/Kaushikmak/Room-chat.git
 cd Room-chat
+```
