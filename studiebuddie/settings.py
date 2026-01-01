@@ -12,7 +12,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key-change-this')
 DEBUG = 'RENDER' not in os.environ
 
 # Allow the host provided by Render
-ALLOWED_HOSTS = ['*'] # You can narrow this down to your-app.onrender.com later
+ALLOWED_HOSTS = ['room-chat-api-eudf.onrender.com', 'www.room-chat.com']
 
 # --- Application definition ---
 INSTALLED_APPS = [
@@ -101,13 +101,19 @@ REST_FRAMEWORK = {
     ]
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://www.room-chat.com",
+    "https://room-chat.com",
+]
+
 # --- CORS (Allow your frontend to connect) ---
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5500",                  # For local testing
     "http://127.0.0.1:5500",                  # For local testing
     "https://room-chat.vercel.app",           # Your Vercel domain
-    "https://www.room-chat.com",              # Your custom domain
+    "https://www.room-chat.com",
+    "https://room-chat.com",              # Your custom domain
 ]
 # In real production, replace True with specific domains:
 # CORS_ALLOWED_ORIGINS = ["https://your-frontend.com"]
