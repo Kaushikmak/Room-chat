@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from base.models import Room, Topic, Message
+from base.models import Room, Topic, Message, Friendship
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
@@ -23,11 +23,19 @@ class TopicSerializer(serializers.ModelSerializer):
         model = Topic
         fields = '__all__'
 
+# --- NEW SERIALIZER ---
+class FriendSerializer(serializers.ModelSerializer):
+    friend = UserSerializer(read_only=True)
+    
+    class Meta:
+        model = Friendship
+        fields = ['id', 'friend', 'created']
+
 class RoomSerializer(serializers.ModelSerializer):
     host = UserSerializer(read_only=True)
     topic = TopicSerializer(read_only=True)
     
-    # 1. Make topic_id OPTIONAL (so they can send name OR id OR nothing)
+    # Topic Handling
     topic_id = serializers.PrimaryKeyRelatedField(
         queryset=Topic.objects.all(), 
         source='topic', 
@@ -35,20 +43,16 @@ class RoomSerializer(serializers.ModelSerializer):
         required=False, 
         allow_null=True
     )
-
-    # 2. Add a new field for Topic Name
     topic_name = serializers.CharField(write_only=True, required=False)
 
     class Meta:
         model = Room
         fields = '__all__'
 
-    # 3. Custom Logic to Create Topic if 'topic_name' is provided
     def create(self, validated_data):
+        # Handle Topic Creation
         topic_name = validated_data.pop('topic_name', None)
-        
         if topic_name:
-            # Get existing topic or create a new one
             topic, created = Topic.objects.get_or_create(name=topic_name)
             validated_data['topic'] = topic
 
@@ -56,7 +60,6 @@ class RoomSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         topic_name = validated_data.pop('topic_name', None)
-        
         if topic_name:
             topic, created = Topic.objects.get_or_create(name=topic_name)
             instance.topic = topic
