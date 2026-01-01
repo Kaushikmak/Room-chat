@@ -6,17 +6,13 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'password']
-        # extra_kwargs ensures the password is required when registering 
-        # but is NOT included when fetching user data (security best practice).
         extra_kwargs = {'password': {'write_only': True, 'required': True}}
 
     def create(self, validated_data):
-        # We override create to use 'create_user' which hashes the password
         user = User.objects.create_user(**validated_data)
         return user
 
     def update(self, instance, validated_data):
-        # We override update to hash the password if it is being changed
         if 'password' in validated_data:
             password = validated_data.pop('password')
             instance.set_password(password)
@@ -28,18 +24,44 @@ class TopicSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class RoomSerializer(serializers.ModelSerializer):
-    # Nested serializers allow us to see the full User/Topic object (Read)
     host = UserSerializer(read_only=True)
     topic = TopicSerializer(read_only=True)
     
-    # Write-only field to accept an ID when creating/updating a room
+    # 1. Make topic_id OPTIONAL (so they can send name OR id OR nothing)
     topic_id = serializers.PrimaryKeyRelatedField(
-        queryset=Topic.objects.all(), source='topic', write_only=True
+        queryset=Topic.objects.all(), 
+        source='topic', 
+        write_only=True, 
+        required=False, 
+        allow_null=True
     )
+
+    # 2. Add a new field for Topic Name
+    topic_name = serializers.CharField(write_only=True, required=False)
 
     class Meta:
         model = Room
         fields = '__all__'
+
+    # 3. Custom Logic to Create Topic if 'topic_name' is provided
+    def create(self, validated_data):
+        topic_name = validated_data.pop('topic_name', None)
+        
+        if topic_name:
+            # Get existing topic or create a new one
+            topic, created = Topic.objects.get_or_create(name=topic_name)
+            validated_data['topic'] = topic
+
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        topic_name = validated_data.pop('topic_name', None)
+        
+        if topic_name:
+            topic, created = Topic.objects.get_or_create(name=topic_name)
+            instance.topic = topic
+            
+        return super().update(instance, validated_data)
 
 class MessageSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
@@ -47,14 +69,11 @@ class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = '__all__'
-        # We set 'room' to read_only so the serializer doesn't require it 
-        # in the input (since we attach it automatically in the view)
         read_only_fields = ['room']
-
 
 class ActivitySerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-    room = serializers.ReadOnlyField(source='room.name') # Just get the room name
+    room = serializers.ReadOnlyField(source='room.name')
 
     class Meta:
         model = Message
