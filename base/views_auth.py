@@ -5,10 +5,12 @@ from dj_rest_auth.registration.views import SocialLoginView
 
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
-    callback_url = "https://www.room-chat.com/login" # OR "http://127.0.0.1:5500/login.html" for local testing
+    # Matches your "Authorised redirect URIs" in Google Console
+    callback_url = "https://www.room-chat.com/login" 
     client_class = OAuth2Client
 
 class GitHubLogin(SocialLoginView):
     adapter_class = GitHubOAuth2Adapter
-    callback_url = "https://www.room-chat.com/login" # OR "http://127.0.0.1:5500/login.html" for local testing
+    # MUST match the "Authorization callback URL" in GitHub Developer Settings
+    callback_url = "https://room-chat-api-eudf.onrender.com/accounts/github/login/callback/"
     client_class = OAuth2Client
