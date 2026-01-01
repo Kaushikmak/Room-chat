@@ -102,7 +102,13 @@ REST_FRAMEWORK = {
 }
 
 # --- CORS (Allow your frontend to connect) ---
-CORS_ALLOW_ALL_ORIGINS = True 
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5500",                  # For local testing
+    "http://127.0.0.1:5500",                  # For local testing
+    "https://room-chat.vercel.app",           # Your Vercel domain
+    "https://www.room-chat.com",              # Your custom domain
+]
 # In real production, replace True with specific domains:
 # CORS_ALLOWED_ORIGINS = ["https://your-frontend.com"]
 
