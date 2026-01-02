@@ -237,12 +237,20 @@ def roomMessages(request, pk):
 # UTILS
 # -----------------------------------------------------------------------------
 
-@api_view(['GET'])
-@permission_classes([AllowAny])
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def getTopics(request):
-    topics = Topic.objects.all()
-    serializer = TopicSerializer(topics, many=True)
-    return Response(serializer.data)
+    if request.method == 'GET':
+        topics = Topic.objects.all()
+        serializer = TopicSerializer(topics, many=True)
+        return Response(serializer.data)
+    
+    if request.method == 'POST':
+        serializer = TopicSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
