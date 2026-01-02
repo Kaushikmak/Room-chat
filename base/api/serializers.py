@@ -77,7 +77,8 @@ class MessageSerializer(serializers.ModelSerializer):
 class ActivitySerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     room = serializers.ReadOnlyField(source='room.name')
+    topic = serializers.ReadOnlyField(source='room.topic.name')
 
     class Meta:
         model = Message
-        fields = ['id', 'user', 'room', 'body', 'created']
+        fields = ['id', 'user', 'room', 'topic', 'body', 'created']

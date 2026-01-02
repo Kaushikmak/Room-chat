@@ -255,7 +255,8 @@ def getTopics(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def getActivity(request):
-    activities = Message.objects.all().order_by('-created')[:5]
+    # CHANGE: Filter out DMs (is_direct_message=False)
+    activities = Message.objects.filter(room__is_direct_message=False).order_by('-created')[:10]
     serializer = ActivitySerializer(activities, many=True)
     return Response(serializer.data)
 
