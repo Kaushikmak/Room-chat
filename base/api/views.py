@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import update_last_login
 
 # Imports
 from base.models import Room, Topic, Message, Friendship
@@ -38,10 +39,12 @@ def loginUser(request):
     password = request.data.get('password')
     user = authenticate(request, username=username, password=password)
     if user is not None:
+        update_last_login(None, user) # <--- FIX: Update the timestamp
         token, created = Token.objects.get_or_create(user=user)
         return Response({'token': token.key, 'user_id': user.id, 'username': user.username})
     else:
         return Response({'detail': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
