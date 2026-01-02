@@ -31,4 +31,6 @@ urlpatterns = [
     # --- Utility ---
     path('topics/', views.getTopics, name='get-topics'),
     path('activity/', views.getActivity, name='get-activity'),
+
+    path('users/search/', views.searchUsers, name='search-users'),
 ]

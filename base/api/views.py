@@ -258,3 +258,76 @@ def getActivity(request):
     activities = Message.objects.all().order_by('-created')[:5]
     serializer = ActivitySerializer(activities, many=True)
     return Response(serializer.data)
+
+
+
+def soundex(query):
+    """
+    Basic Soundex algorithm to convert a string into a phonetic code.
+    Example: 'John' -> 'J500', 'Jon' -> 'J500'
+    """
+    query = query.upper()
+    if not query: return ""
+    
+    # 1. Retain first letter
+    code = query[0]
+    
+    # 2. Mapping
+    mapping = {
+        "BFPV": "1", "CGJKQSXZ": "2", "DT": "3",
+        "L": "4", "MN": "5", "R": "6"
+    }
+    
+    # 3. Encode
+    prev_digit = mapping.get(query[0], "") if query[0] in "BFPVCGJKQSXZDTLMNR" else ""
+    
+    for char in query[1:]:
+        digit = ""
+        for key, val in mapping.items():
+            if char in key:
+                digit = val
+                break
+        
+        if digit and digit != prev_digit:
+            code += digit
+            prev_digit = digit
+            
+    # 4. Pad or Truncate to 4 characters
+    code = (code + "0000")[:4]
+    return code
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def searchUsers(request):
+    query = request.GET.get('q', '').strip()
+    if not query:
+        return Response([])
+
+    user = request.user
+    
+    # 1. Get all users except self
+    all_users = User.objects.exclude(id=user.id)
+
+    # 2. Get IDs of existing friends to exclude them (optional, but good UX)
+    existing_friend_ids = Friendship.objects.filter(user=user).values_list('friend_id', flat=True)
+    candidates = all_users.exclude(id__in=existing_friend_ids)
+
+    # 3. Filter: Exact/Partial Match OR Phonetic Match
+    results = []
+    query_soundex = soundex(query)
+
+    for candidate in candidates:
+        # Exact/Partial match (Standard search)
+        if query.lower() in candidate.username.lower():
+            results.append(candidate)
+            continue
+        
+        # Phonetic match (Fuzzy search)
+        # We allow it if the soundex codes match
+        if soundex(candidate.username) == query_soundex:
+            results.append(candidate)
+
+    # 4. Serialize
+    # We use a custom inline serialization for speed
+    data = [{'username': u.username, 'id': u.id} for u in results[:10]] # Limit to 10
+    return Response(data)
