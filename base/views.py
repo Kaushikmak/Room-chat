@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 
-# This file is intentionally left empty.
-# All logic has been moved to base/api/views.py for the REST API.
+def health_check(request):
+    return JsonResponse({"status": "ok"}, status=200)

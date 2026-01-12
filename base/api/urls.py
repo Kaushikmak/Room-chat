@@ -33,4 +33,6 @@ urlpatterns = [
     path('activity/', views.getActivity, name='get-activity'),
 
     path('users/search/', views.searchUsers, name='search-users'),
+
+    path('health/', views.health_check, name='health_check'),
 ]
