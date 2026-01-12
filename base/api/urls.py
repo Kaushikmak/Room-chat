@@ -1,6 +1,7 @@
 from django.urls import path, include
 from . import views
 from base.views_auth import GoogleLogin, GitHubLogin 
+from base.views import health_check  # <--- NEW IMPORT
 
 urlpatterns = [
     path('', views.getRoutes),
@@ -15,11 +16,11 @@ urlpatterns = [
     path('users/register/', views.registerUser, name='register-user'),
     path('users/profile/', views.manageUser, name='user-profile'),
 
-    # --- Friends (NEW) ---
+    # --- Friends ---
     path('users/friends/', views.manageFriends, name='list-add-friends'),
     path('users/friends/<str:username>/', views.manageFriends, name='remove-friend'),
 
-    # --- Direct Messaging (NEW) ---
+    # --- Direct Messaging ---
     path('chat/start/', views.startDirectChat, name='start-dm'),
 
     # --- Room Endpoints ---
@@ -31,8 +32,9 @@ urlpatterns = [
     # --- Utility ---
     path('topics/', views.getTopics, name='get-topics'),
     path('activity/', views.getActivity, name='get-activity'),
-
     path('users/search/', views.searchUsers, name='search-users'),
 
-    path('health/', views.health_check, name='health_check'),
+    # --- Health Check ---
+    # We use the imported function directly, not views.health_check
+    path('health/', health_check, name='health_check'), 
 ]
