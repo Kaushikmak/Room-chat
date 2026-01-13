@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from base.views_auth import GoogleLogin, GitHubLogin 
-from base.views import health_check  # <--- NEW IMPORT
+from base.views import health_check
 
 urlpatterns = [
     path('', views.getRoutes),
