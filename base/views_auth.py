@@ -6,7 +6,8 @@ from dj_rest_auth.registration.views import SocialLoginView
 # DEFINE THE EXACT FRONTEND URL HERE
 # If testing locally, it might be "http://127.0.0.1:5500/frontend/pages/login.html"
 # If on Vercel/Render, it is your actual domain + file path
-FRONTEND_REDIRECT_URL = "https://www.room-chat.com/pages/login.html" 
+# FRONTEND_REDIRECT_URL = "https://www.room-chat.com/pages/login.html" 
+FRONTEND_REDIRECT_URL = "https://room-chat-frontend.vercel.app/pages/login.html"
 
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
